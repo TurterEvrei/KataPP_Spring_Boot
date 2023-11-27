@@ -1,0 +1,39 @@
+<html>
+<body>
+
+<h2>Table of users</h2>
+
+<hr>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    <th:block th:each="user : ${listUsers}">
+        <tr>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <a th:href="@{/user/{id}(id=${user.id})}">
+                    <button type="button">Update</button>
+                </a>
+                <form th:action="@{/deleteUser(id=${user.id})}" th:method="'delete'">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<br>
+
+<input type="button" value="Add" onclick="window.location.href='/user'">
+
+</body>
+</html>
