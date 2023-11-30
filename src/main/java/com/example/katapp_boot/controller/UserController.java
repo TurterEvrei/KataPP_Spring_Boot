@@ -2,16 +2,17 @@ package com.example.katapp_boot.controller;
 
 import com.example.katapp_boot.entity.User;
 import com.example.katapp_boot.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class MainController {
+@RequiredArgsConstructor
+public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @GetMapping("/")
     public String showUsers(Model model) {
@@ -21,8 +22,7 @@ public class MainController {
 
     @GetMapping("/user")
     public String showUserForm(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+        model.addAttribute("user", new User());
         return "user-info";
     }
 
